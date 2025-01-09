@@ -1,6 +1,4 @@
 
-
-
 function Cell(){
     let value = null;
     
@@ -17,7 +15,6 @@ function Cell(){
     };
 
 }
-
 
 
 function Gameboard(){
@@ -62,10 +59,28 @@ function Gameboard(){
 }
 
 
-let gameBoard = Gameboard();
 
-gameBoard.printBoard();
+function GameController( playerOne = "Player One", playerTwo = "Player Two"){
+    
+    const gameBoard = Gameboard();
+    const players = [
+        {
+            name: playerOne,
+            token: 'X',
+        },
+        {
+            name: playerTwo,
+            token: 'O',
+        }
+    ];
 
-gameBoard.insertToken('X', 0, 0);
-gameBoard.insertToken('O', 1, 1);
-gameBoard.printBoard();
+    let activePlayer = players[0];
+
+
+
+}
+
+
+
+
+const game = GameController();
