@@ -32,10 +32,12 @@ const GameBoard = (function(){
 
         // if row and col are out of bounds or the index is already storing a token, return
         if(row < 0 || row >= rows || col < 0 || col >= cols || board[row][col].getToken() !== null){
-            return;
+            return false;
         }
 
         board[row][col].setToken(playerToken);
+
+        return true;
 
     }
 
@@ -115,11 +117,18 @@ const GameController = (function(gameBoard, playerOne = "Player 1", playerTwo = 
         return gameState;
     }
 
+   
 
     const playRound = (row, col) => {
 
         if(gameState){
-            gameBoard.insertToken(activePlayer.token, row, col);
+
+            let successful = gameBoard.insertToken(activePlayer.token, row, col);
+            
+            if(!successful){
+                return;
+            }
+
             gameBoard.printBoard();
 
             const gameWinner = checkForWinner();
