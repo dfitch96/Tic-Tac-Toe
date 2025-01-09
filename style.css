@@ -1,0 +1,29 @@
+
+.container{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.board{
+    display: grid;
+    border: 3px solid black;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    height: 500px;
+    width: 500px;
+    padding: 5px;
+    gap: 5px;
+    border-radius: 15px;
+
+}
+
+
+.cell{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 5rem;
+    cursor: pointer;
+}
