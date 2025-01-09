@@ -150,10 +150,7 @@ const GameController = (function(gameBoard, playerOne = "Player 1", playerTwo = 
     const checkForDraw = () => {
         
         const board = gameBoard.getBoard();
-
         return board.map((row) => row.every((cell) => cell.getToken() !== null)).every(result => result === true);
-
-        
 
     }
 
@@ -192,6 +189,7 @@ const GameController = (function(gameBoard, playerOne = "Player 1", playerTwo = 
             let col = board.map((row) => row[colIndex]);
             if(col.every((cell) => cell.getToken() === player)){
                 result = true;
+                break;
             }
         }
 
