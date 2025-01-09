@@ -208,7 +208,7 @@ function GameController(playerOne = "Player 1", playerTwo = "Player 2"){
 }
 
 
-function ScreenController(){
+const ScreenController = (function(){
 
     const gameController = GameController();
     const playerTurnDiv = document.querySelector(".turn");
@@ -272,10 +272,9 @@ function ScreenController(){
     gameController.startGame();
     updateScreen();
 
-}
+})();
 
 
-ScreenController();
 
 
 
