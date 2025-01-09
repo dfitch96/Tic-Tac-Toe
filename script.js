@@ -2,7 +2,7 @@
 
 
 function Cell(){
-    value = null;
+    let value = null;
     
     const setToken = (token) => {
         value = token;
@@ -41,9 +41,22 @@ function Gameboard(){
         console.log(boardWithCellValues);
     }
 
+    const insertToken = (playerToken, row, col) => {
+
+        // if row and col are out of bounds or the index is already storing a token, return
+        if(row < 0 || row >= rows || col < 0 || col >= cols || board[row][col].getToken() !== null){
+            return;
+        }
+
+        board[row][col].setToken(playerToken);
+
+    }
+
+
     return {
         getBoard,
         printBoard,
+        insertToken,
     };
 
 }
@@ -51,4 +64,8 @@ function Gameboard(){
 
 let gameBoard = Gameboard();
 
+gameBoard.printBoard();
+
+gameBoard.insertToken('X', 0, 0);
+gameBoard.insertToken('O', 1, 1);
 gameBoard.printBoard();
