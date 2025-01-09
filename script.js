@@ -132,9 +132,12 @@ const GameController = (function(gameBoard, playerOne = "Player 1", playerTwo = 
             gameBoard.printBoard();
 
             const gameWinner = checkForWinner();
-            
+            const draw = checkForDraw();
+
             if(gameWinner){
                 winner = gameWinner;
+                gameState = false;
+            } else if(draw){
                 gameState = false;
             } else{
                 switchActivePlayer();
@@ -142,6 +145,16 @@ const GameController = (function(gameBoard, playerOne = "Player 1", playerTwo = 
             }
 
         }
+    }
+
+    const checkForDraw = () => {
+        
+        const board = gameBoard.getBoard();
+
+        return board.map((row) => row.every((cell) => cell.getToken() !== null)).every(result => result === true);
+
+        
+
     }
 
     const checkForWinner = () => {
@@ -250,7 +263,14 @@ const ScreenController = (function(gameController){
 
         if(!gameController.getGameState()){
             const gameWinner = gameController.getWinner();
-            resultDiv.textContent = `${gameWinner.name} Wins!`;
+
+            if(gameWinner){
+                resultDiv.textContent = `${gameWinner.name} Wins!`;
+            } else{
+                resultDiv.textContent = 'Draw!';
+            }
+
+            
         }
 
 
