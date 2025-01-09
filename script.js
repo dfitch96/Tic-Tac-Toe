@@ -16,7 +16,7 @@ function Cell(){
 }
 
 
-function Gameboard(){
+const GameBoard = (function(){
     let rows = 3;
     let cols = 3;
     let board = [];
@@ -60,13 +60,13 @@ function Gameboard(){
         clearBoard,
     };
 
-}
+})();
 
 
 
-function GameController(playerOne = "Player 1", playerTwo = "Player 2"){
+const GameController = (function(gameBoard, playerOne = "Player 1", playerTwo = "Player 2"){
     
-    const gameBoard = Gameboard();
+   
 
     //gameState is true while neither player has won
     let gameState = true;
@@ -205,12 +205,12 @@ function GameController(playerOne = "Player 1", playerTwo = "Player 2"){
         getBoard: gameBoard.getBoard,
     }
 
-}
+})(GameBoard);
 
 
-const ScreenController = (function(){
+const ScreenController = (function(gameController){
 
-    const gameController = GameController();
+    
     const playerTurnDiv = document.querySelector(".turn");
     const resultDiv = document.querySelector(".result");
     const boardDiv = document.querySelector(".board");
@@ -272,7 +272,7 @@ const ScreenController = (function(){
     gameController.startGame();
     updateScreen();
 
-})();
+})(GameController);
 
 
 
