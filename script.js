@@ -60,7 +60,7 @@ function Gameboard(){
 
 
 
-function GameController( playerOne = "Player One", playerTwo = "Player Two"){
+function GameController(playerOne = "Player 1", playerTwo = "Player 2"){
     
     const gameBoard = Gameboard();
     const players = [
@@ -75,8 +75,38 @@ function GameController( playerOne = "Player One", playerTwo = "Player Two"){
     ];
 
     let activePlayer = players[0];
+    
+    const getActivePlayer = () => activePlayer;
+
+    const switchActivePlayer = () => activePlayer = players[0] === activePlayer ? players[1] : players[0];
+
+    const printActivePlayer = () => {
+        console.log(`${getActivePlayer().name}'s turn`);
+    }
 
 
+    const playRound = (row, col) => {
+
+        printActivePlayer();
+        gameBoard.insertToken(activePlayer.token, row, col);
+        switchActivePlayer();
+        gameBoard.printBoard();
+    }
+
+    const checkForWinner = () => {
+
+        const currentPlayerToken = getActivePlayer().token;
+        
+
+
+
+    }
+
+    return {
+        getActivePlayer,
+        switchActivePlayer,
+        playRound,
+    }
 
 }
 
@@ -84,3 +114,8 @@ function GameController( playerOne = "Player One", playerTwo = "Player Two"){
 
 
 const game = GameController();
+
+game.playRound(0, 0);
+game.playRound(0, 1);
+game.playRound(0, 2);
+
